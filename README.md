@@ -1,5 +1,5 @@
-Pi RC-Switch
-============
+Pi OLED Display
+===============
 
 A Java library to drive the popular monochrome 128x64 pixel OLED display (SSD1306).
 The display can be bought from Adafruit or from a lot of ebay vendors.

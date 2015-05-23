@@ -10,7 +10,7 @@
         <netbeans.hint.license>lgpl21</netbeans.hint.license>        
     </properties>
     
-    <name>Pi OLED display</name>
+    <name>Pi OLED Display</name>
     <url>http://pi3g.com</url>
 
     <parent>
