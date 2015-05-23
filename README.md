@@ -14,7 +14,7 @@ You can then use the library in your maven projects like this:
     <dependency>
         <groupId>de.pi3g.pi</groupId>
         <artifactId>pi-oled</artifactId>
-        <version>1.0</version>
+        <version>1.0-SNAPSHOT</version>
     </dependency>
 
 The hardware should be connected to the i2c bus. Where the i2c bus pins
