@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  * <p/>
  * Note that you need to enable i2c (using for example raspi-config).
  * Also note that it is possible to speed up the refresh rate of the
- * display up to ~60fps by adding the following to the config.txt of 
+ * display up to ~60fps by adding the following to the config.txt of
  * your raspberry: dtparam=i2c1_baudrate=1000000
  * <p/>
  * Sample usage:
@@ -43,11 +43,14 @@ import java.util.logging.Logger;
  * OLEDDisplay display = new OLEDDisplay();
  * display.drawStringCentered("Hello World!", 25, true);
  * display.update();
+ * Thread.sleep(10000); //sleep some time, because the display
+ *                      //is automatically cleared the moment
+ *                      //the application terminates
  * </pre>
  * <p/>
  * This class is basically a rough port of Adafruit's BSD licensed
  * SSD1306 library (https://github.com/adafruit/Adafruit_SSD1306)
- * 
+ *
  * @author Florian Frankenberger
  */
 public class OLEDDisplay {
@@ -105,30 +108,30 @@ public class OLEDDisplay {
     /**
      * creates an oled display object with default
      * i2c bus 1 and default display address of 0x3C
-     * 
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public OLEDDisplay() throws IOException {
         this(DEFAULT_I2C_BUS, DEFAULT_DISPLAY_ADDRESS);
     }
-    
+
     /**
      * creates an oled display object with default
      * i2c bus 1 and the given display address
-     * 
+     *
      * @param displayAddress the i2c bus address of the display
-     * @throws IOException 
+     * @throws IOException
      */
     public OLEDDisplay(int displayAddress) throws IOException {
         this(DEFAULT_I2C_BUS, displayAddress);
     }
-    
+
     /**
      * constructor with all parameters
-     * 
+     *
      * @param busNumber the i2c bus number (use constants from I2CBus)
      * @param displayAddress the i2c bus address of the display
-     * @throws IOException 
+     * @throws IOException
      */
     public OLEDDisplay(int busNumber, int displayAddress) throws IOException {
         bus = I2CFactory.getInstance(busNumber);
