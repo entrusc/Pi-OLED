@@ -34,6 +34,9 @@ import java.util.logging.Logger;
  * is connected to the raspberry's i2c bus (bus 1).
  * <p/>
  * Note that you need to enable i2c (using for example raspi-config).
+ * Also note that you need to load the following kernel modules:
+ * <pre>i2c-bcm2708</pre> and <pre>i2c_dev</pre>
+ * <p/>
  * Also note that it is possible to speed up the refresh rate of the
  * display up to ~60fps by adding the following to the config.txt of
  * your raspberry: dtparam=i2c1_baudrate=1000000
