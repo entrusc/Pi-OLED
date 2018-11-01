@@ -7,9 +7,9 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbeans.hint.license>lgpl21</netbeans.hint.license>        
+        <netbeans.hint.license>lgpl21</netbeans.hint.license>
     </properties>
-    
+
     <name>Pi OLED Display</name>
     <url>http://pi3g.com</url>
 
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-core</artifactId>
-            <version>1.0</version>
+            <version>1.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -79,5 +79,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>    
+    </build>
 </project>

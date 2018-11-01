@@ -18,13 +18,13 @@ You can then use the library in your maven projects like this:
     </dependency>
 
 The hardware should be connected to the i2c bus. Where the i2c bus pins
-are located can be looked up e.g. here: 
-http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29 
+are located can be looked up e.g. here:
+http://elinux.org/RPi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29
 
 Then you can use the library like this:
 
     OLEDDisplay display = new OLEDDisplay();
-    display.drawStringCentered("Hello World!", 25, true);
+    display.drawStringCentered("Hello World!", Font.FONT_5X8, 25, true);
     display.update();
 
 Note that you always need to call update() after you changed the content of the display
@@ -38,8 +38,8 @@ how to build?
 =============
 
 The entire project is build with maven. Just clone the master branch, open the directory in NetBeans and hit run. Or if
-you prefer the command line: 
+you prefer the command line:
 
     mvn install
 
-should build everything correctly. 
+should build everything correctly.

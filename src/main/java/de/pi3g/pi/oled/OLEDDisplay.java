@@ -21,6 +21,7 @@ package de.pi3g.pi.oled;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.IOException;
@@ -114,8 +115,9 @@ public class OLEDDisplay {
      * i2c bus 1 and default display address of 0x3C
      *
      * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
-    public OLEDDisplay() throws IOException {
+    public OLEDDisplay() throws IOException, UnsupportedBusNumberException {
         this(DEFAULT_I2C_BUS, DEFAULT_DISPLAY_ADDRESS);
     }
 
@@ -125,8 +127,9 @@ public class OLEDDisplay {
      *
      * @param displayAddress the i2c bus address of the display
      * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
-    public OLEDDisplay(int displayAddress) throws IOException {
+    public OLEDDisplay(int displayAddress) throws IOException, UnsupportedBusNumberException {
         this(DEFAULT_I2C_BUS, displayAddress);
     }
 
@@ -136,8 +139,9 @@ public class OLEDDisplay {
      * @param busNumber the i2c bus number (use constants from I2CBus)
      * @param displayAddress the i2c bus address of the display
      * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
-    public OLEDDisplay(int busNumber, int displayAddress) throws IOException {
+    public OLEDDisplay(int busNumber, int displayAddress) throws IOException, UnsupportedBusNumberException {
         bus = I2CFactory.getInstance(busNumber);
         device = bus.getDevice(displayAddress);
 
