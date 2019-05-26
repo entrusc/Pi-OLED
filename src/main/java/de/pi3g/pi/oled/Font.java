@@ -350,16 +350,16 @@ public enum Font {
         (byte) 0x10, (byte) 0x10, (byte) 0x10, (byte) 0x00,
     });
 
-    private final int minChar, maxChar, width, height, outterWidth, outterHeight;
+    private final int minChar, maxChar, width, height, outerWidth, outerHeight;
     private final byte[] data;
 
-    private Font(int minChar, int maxChar, int width, int height, int outterWidth, int outterHeight, byte[] data) {
+    private Font(int minChar, int maxChar, int width, int height, int outerWidth, int outerHeight, byte[] data) {
         this.minChar = minChar;
         this.maxChar = maxChar;
         this.width = width;
         this.height = height;
-        this.outterWidth = outterWidth;
-        this.outterHeight = outterHeight;
+        this.outerWidth = outerWidth;
+        this.outerHeight = outerHeight;
         this.data = data;
     }
 
@@ -371,12 +371,12 @@ public enum Font {
         return height;
     }
 
-    public int getOutterWidth() {
-        return outterWidth;
+    public int getOuterWidth() {
+        return outerWidth;
     }
 
-    public int getOutterHeight() {
-        return outterHeight;
+    public int getOuterHeight() {
+        return outerHeight;
     }
 
     public byte getData(int offset) {

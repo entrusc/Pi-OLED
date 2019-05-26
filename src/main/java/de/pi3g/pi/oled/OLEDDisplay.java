@@ -227,20 +227,20 @@ public class OLEDDisplay {
         int posY = y;
         for (char c : string.toCharArray()) {
             if (c == '\n') {
-                posY += font.getOutterHeight();
+                posY += font.getOuterHeight();
                 posX = x;
             } else {
                 if (posX >= 0 && posX + font.getWidth() < this.getWidth()
                         && posY >= 0 && posY + font.getHeight() < this.getHeight()) {
                     drawChar(c, font, posX, posY, on);
                 }
-                posX += font.getOutterWidth();
+                posX += font.getOuterWidth();
             }
         }
     }
 
     public synchronized void drawStringCentered(String string, Font font, int y, boolean on) {
-        final int strSizeX = string.length() * font.getOutterWidth();
+        final int strSizeX = string.length() * font.getOuterWidth();
         final int x = (this.getWidth() - strSizeX) / 2;
         drawString(string, font, x, y, on);
     }
