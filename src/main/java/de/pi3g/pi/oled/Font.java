@@ -25,7 +25,7 @@ package de.pi3g.pi.oled;
  */
 public enum Font {
 
-    FONT_5X8(0, 255, 5, 8, 9, 3, new byte[] {
+    FONT_5X8(0, 255, 5, 8, 6, 9, new byte[] {
         (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
         (byte) 0x3E, (byte) 0x5B, (byte) 0x4F, (byte) 0x5B, (byte) 0x3E,
         (byte) 0x3E, (byte) 0x6B, (byte) 0x4F, (byte) 0x6B, (byte) 0x3E,
