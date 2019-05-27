@@ -33,15 +33,17 @@ import java.util.logging.Logger;
  * A raspberry pi driver for the 128x64 pixel OLED display (i2c bus).
  * The supported kind of display uses the SSD1306 driver chip and
  * is connected to the raspberry's i2c bus (bus 1).
- * <p/>
+ * <p>
  * Note that you need to enable i2c (using for example raspi-config).
  * Also note that you need to load the following kernel modules:
  * <pre>i2c-bcm2708</pre> and <pre>i2c_dev</pre>
- * <p/>
+ * </p>
+ * <p>
  * Also note that it is possible to speed up the refresh rate of the
  * display up to ~60fps by adding the following to the config.txt of
  * your raspberry: dtparam=i2c1_baudrate=1000000
- * <p/>
+ * </p>
+ * <p>
  * Sample usage:
  * <pre>
  * OLEDDisplay display = new OLEDDisplay();
@@ -51,9 +53,11 @@ import java.util.logging.Logger;
  *                      //is automatically cleared the moment
  *                      //the application terminates
  * </pre>
- * <p/>
+ * </p>
+ * <p>
  * This class is basically a rough port of Adafruit's BSD licensed
  * SSD1306 library (https://github.com/adafruit/Adafruit_SSD1306)
+ * </p>
  *
  * @author Florian Frankenberger
  */
@@ -111,7 +115,7 @@ public class OLEDDisplay {
     private final byte[] imageBuffer = new byte[(DISPLAY_WIDTH * DISPLAY_HEIGHT) / 8];
 
     /**
-     * creates an oled display object with default
+     * creates an OLED display object with default
      * i2c bus 1 and default display address of 0x3C
      *
      * @throws IOException
@@ -122,7 +126,7 @@ public class OLEDDisplay {
     }
 
     /**
-     * creates an oled display object with default
+     * creates an OLED display object with default
      * i2c bus 1 and the given display address
      *
      * @param displayAddress the i2c bus address of the display
@@ -257,10 +261,11 @@ public class OLEDDisplay {
      * draws the given image over the current image buffer. The image
      * is automatically converted to a binary image (if it not already
      * is).
-     * <p/>
+     * <p>
      * Note that the current buffer is not cleared before, so if you
      * want the image to completely overwrite the current display
      * content you need to call clear() before.
+     * </p>
      *
      * @param image
      * @param x
