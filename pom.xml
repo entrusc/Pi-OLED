@@ -29,9 +29,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/entrusc/Pi-RC-Switch</connection>
-        <developerConnection>scm:git:https://github.com/entrusc/Pi-RC-Switch</developerConnection>
-        <url>scm:git:https://github.com/entrusc/Pi-RC-Switch</url>
+        <url>https://github.com/entrusc/Pi-OLED</url>
+        <connection>scm:git:git@github.com:entrusc/Pi-OLED</connection>
+        <developerConnection>scm:git:git@github.com:entrusc/Pi-OLED</developerConnection>
     </scm>
 
     <developers>
