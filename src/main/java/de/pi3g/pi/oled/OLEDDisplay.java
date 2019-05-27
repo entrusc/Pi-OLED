@@ -36,8 +36,8 @@ import java.util.logging.Logger;
  * <p>
  * Note that you need to enable i2c (using for example raspi-config).
  * Also note that you need to load the following kernel modules:
- * <pre>i2c-bcm2708</pre> and <pre>i2c_dev</pre>
  * </p>
+ * <pre>i2c-bcm2708</pre> and <pre>i2c_dev</pre>
  * <p>
  * Also note that it is possible to speed up the refresh rate of the
  * display up to ~60fps by adding the following to the config.txt of
@@ -45,6 +45,7 @@ import java.util.logging.Logger;
  * </p>
  * <p>
  * Sample usage:
+ * </p>
  * <pre>
  * OLEDDisplay display = new OLEDDisplay();
  * display.drawStringCentered("Hello World!", 25, true);
@@ -53,7 +54,6 @@ import java.util.logging.Logger;
  *                      //is automatically cleared the moment
  *                      //the application terminates
  * </pre>
- * </p>
  * <p>
  * This class is basically a rough port of Adafruit's BSD licensed
  * SSD1306 library (https://github.com/adafruit/Adafruit_SSD1306)
