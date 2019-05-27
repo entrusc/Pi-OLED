@@ -316,8 +316,4 @@ public class OLEDDisplay {
         }
     }
 
-    //simple 7x5 font
-    private static final byte FONT_7X5[] = {
-
-    };
 }
