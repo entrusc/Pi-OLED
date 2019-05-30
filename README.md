@@ -1,8 +1,9 @@
 Pi OLED Display
 ===============
 
-A Java library to drive the popular monochrome 128x64 pixel OLED display (SSD1306).
-The display can be bought from Adafruit or from a lot of ebay vendors.
+A Java library to drive the popular monochrome 128x64 pixel OLED display (SSD1306)
+from a Raspberry Pi. The display can be bought from Adafruit or from a lot of ebay
+vendors.
 
 This is basically a rough port of Adafruit's SSD1306 library for Arduino which
 can be found here: https://github.com/adafruit/Adafruit_SSD1306
