@@ -9,12 +9,12 @@ can be found here: https://github.com/adafruit/Adafruit_SSD1306
 
 how to use?
 ============
-You can then use the library in your maven projects like this:
+You can then use the library in your Maven projects like this (it's on Maven Central):
 
     <dependency>
         <groupId>de.pi3g.pi</groupId>
         <artifactId>pi-oled</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1</version>
     </dependency>
 
 The hardware should be connected to the i2c bus. Where the i2c bus pins

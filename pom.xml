@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbeans.hint.license>lgpl21</netbeans.hint.license>
+        <netbeans.hint.license>bsd3</netbeans.hint.license>
     </properties>
 
     <name>Pi OLED Display</name>
@@ -22,9 +22,9 @@
     <licenses>
         <license>
             <name>
-                GNU Library or Lesser General Public License (LGPL)
+                BSD-3-Clause
             </name>
-            <url>http://www.gnu.org/licenses/lgpl.html</url>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
         </license>
     </licenses>
 
