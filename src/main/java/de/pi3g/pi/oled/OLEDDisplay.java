@@ -291,7 +291,7 @@ public class OLEDDisplay {
         for (int posY = 0; posY < DISPLAY_HEIGHT; posY++) {
             for (int posX = 0; posX < DISPLAY_WIDTH / 8; posX++) {
                 for (int bit = 0; bit < 8; bit++) {
-                    pixelval = (byte) ((pixels[index/8] >>  (8 - bit)) & 0x01);
+                    pixelval = (byte) ((pixels[index/8] >>  (7 - bit)) & 0x01);
                     setPixel(posX * 8 + bit, posY, pixelval > 0);
                     index++;
                 }
