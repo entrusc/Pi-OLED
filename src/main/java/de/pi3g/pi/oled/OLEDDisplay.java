@@ -73,6 +73,21 @@ import java.util.logging.Logger;
  */
 public class OLEDDisplay {
 
+    /**
+     * Used to specify the orientation of a display.
+     * This allows mounting the oled display upright or flipping it.
+     * <p>
+     * All rotation values are for clockwise rotation.
+     * </p>
+     */
+    public enum Rotation {
+        DEG_0,
+        DEG_90,
+        DEG_180,
+        DEG_270
+    }
+
+
     private static final Logger LOGGER = Logger.getLogger(OLEDDisplay.class.getCanonicalName());
 
     private static final int DEFAULT_I2C_BUS = I2CBus.BUS_1;
@@ -121,30 +136,71 @@ public class OLEDDisplay {
 
     private final I2CBus bus;
     private final I2CDevice device;
+    private final Rotation rotation;
 
     private final byte[] imageBuffer = new byte[(DISPLAY_WIDTH * DISPLAY_HEIGHT) / 8];
 
     /**
      * creates an OLED display object with default
-     * i2c bus 1 and default display address of 0x3C
+     * i2c bus 1, default display address of 0x3C and
+     * and the default orientation
      *
      * @throws IOException
      * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
     public OLEDDisplay() throws IOException, UnsupportedBusNumberException {
-        this(DEFAULT_I2C_BUS, DEFAULT_DISPLAY_ADDRESS);
+        this(DEFAULT_I2C_BUS, DEFAULT_DISPLAY_ADDRESS, Rotation.DEG_0);
     }
 
     /**
      * creates an OLED display object with default
-     * i2c bus 1 and the given display address
+     * i2c bus 1, the given display address and the default orientation
      *
      * @param displayAddress the i2c bus address of the display
      * @throws IOException
      * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
     public OLEDDisplay(int displayAddress) throws IOException, UnsupportedBusNumberException {
-        this(DEFAULT_I2C_BUS, displayAddress);
+        this(DEFAULT_I2C_BUS, displayAddress, Rotation.DEG_0);
+    }
+
+    /**
+     * creates an OLED display object with the given
+     * i2c bus 1, the given display address and the default orientation
+     *
+     * @param busNumber      the i2c bus number (use constants from I2CBus)
+     * @param displayAddress the i2c bus address of the display
+     * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
+     */
+    public OLEDDisplay(int busNumber, int displayAddress) throws IOException, UnsupportedBusNumberException {
+        this(busNumber, displayAddress, Rotation.DEG_0);
+    }
+
+    /**
+     * creates an OLED display object with default
+     * i2c bus 1, default display address of 0x3C
+     * and a given rotation
+     *
+     * @param rotation orientation of the display, can be used if the display is mounted upright or flipped
+     * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
+     */
+    public OLEDDisplay(Rotation rotation) throws IOException, UnsupportedBusNumberException {
+        this(DEFAULT_I2C_BUS, DEFAULT_DISPLAY_ADDRESS, rotation);
+    }
+
+    /**
+     * creates an OLED display object with default
+     * i2c bus 1, given display address and a given rotation
+     *
+     * @param displayAddress the i2c bus address of the display
+     * @param rotation orientation of the display, can be used if the display is mounted upright or flipped
+     * @throws IOException
+     * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
+     */
+    public OLEDDisplay(int displayAddress, Rotation rotation) throws IOException, UnsupportedBusNumberException {
+        this(DEFAULT_I2C_BUS, displayAddress, rotation);
     }
 
     /**
@@ -152,12 +208,14 @@ public class OLEDDisplay {
      *
      * @param busNumber the i2c bus number (use constants from I2CBus)
      * @param displayAddress the i2c bus address of the display
+     * @param rotation orientation of the display, can be used if the display is mounted upright or flipped
      * @throws IOException
      * @throws com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException
      */
-    public OLEDDisplay(int busNumber, int displayAddress) throws IOException, UnsupportedBusNumberException {
+    public OLEDDisplay(int busNumber, int displayAddress, Rotation rotation) throws IOException, UnsupportedBusNumberException {
         bus = I2CFactory.getInstance(busNumber);
         device = bus.getDevice(displayAddress);
+        this.rotation = rotation;
 
         LOGGER.log(Level.FINE, "Opened i2c bus");
 
@@ -180,12 +238,30 @@ public class OLEDDisplay {
         Arrays.fill(imageBuffer, (byte) 0x00);
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     public int getWidth() {
-        return DISPLAY_WIDTH;
+        switch (rotation) {
+            case DEG_90:
+            case DEG_270:
+                return DISPLAY_HEIGHT;
+            case DEG_0:
+            case DEG_180:
+            default:
+                return DISPLAY_WIDTH;
+        }
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     public int getHeight() {
-        return DISPLAY_HEIGHT;
+        switch (rotation) {
+            case DEG_90:
+            case DEG_270:
+                return DISPLAY_WIDTH;
+            case DEG_0:
+            case DEG_180:
+            default:
+                return DISPLAY_HEIGHT;
+        }
     }
 
     private void writeCommand(byte command) throws IOException {
@@ -221,7 +297,26 @@ public class OLEDDisplay {
         writeCommand(SSD1306_DISPLAYON);//--turn on oled panel
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     public synchronized void setPixel(int x, int y, boolean on) {
+        switch (rotation) {
+            default:
+            case DEG_0:
+                updateImageBuffer(x, y, on);
+                break;
+            case DEG_90:
+                updateImageBuffer(y, getWidth() - x - 1, on);
+                break;
+            case DEG_180:
+                updateImageBuffer(getWidth() - x - 1, getHeight() - y - 1, on);
+                break;
+            case DEG_270:
+                updateImageBuffer(getHeight() - y - 1, x, on);
+                break;
+        }
+    }
+
+    private synchronized void updateImageBuffer(int x, int y, boolean on) {
         final int pos = x + (y / 8) * DISPLAY_WIDTH;
         if (pos >= 0 && pos < MAX_INDEX) {
             if (on) {
