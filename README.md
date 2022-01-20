@@ -38,7 +38,7 @@ can use one of the constructors with more parameters.
 how to build?
 =============
 
-The entire project is build with maven. Just clone the master branch, change to the directory and run maven like this:
+The entire project is build with maven. Just clone the master branch, change to the cloned directory and run maven like this:
 
     mvn install
 
