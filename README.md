@@ -38,9 +38,8 @@ can use one of the constructors with more parameters.
 how to build?
 =============
 
-The entire project is build with maven. Just clone the master branch, open the directory in NetBeans and hit run. Or if
-you prefer the command line:
+The entire project is build with maven. Just clone the master branch, change to the directory and run maven like this:
 
     mvn install
 
-should build everything correctly.
+This should build everything correctly.
