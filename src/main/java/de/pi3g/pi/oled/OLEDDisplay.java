@@ -217,7 +217,7 @@ public class OLEDDisplay {
         device = bus.getDevice(displayAddress);
         this.rotation = rotation;
 
-        LOGGER.log(Level.INFO, "Opened i2c bus");
+        LOGGER.log(Level.DEBUG, "Opened i2c bus");
 
         clear();
 
@@ -422,7 +422,7 @@ public class OLEDDisplay {
             //now we close the bus
             bus.close();
         } catch (IOException ex) {
-            LOGGER.log(Level.INFO, "Closing i2c bus");
+            LOGGER.log(Level.DEBUG, "Closing i2c bus");
         }
     }
 
